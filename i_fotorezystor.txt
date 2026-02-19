@@ -1,0 +1,1 @@
+rezystor, którego opór zmienia się w zależności od natężenia światła, wykorzystywany w układach reagujących na oświetlenie.

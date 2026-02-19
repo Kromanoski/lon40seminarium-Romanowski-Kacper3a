@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Figur Geometrycznych</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fff6b9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #be1111;
+            font-style: normal;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            max-width: 800px;
+        }
+
+        .card {
+            background-color: #f4e786;
+            border: 2px solid #c8b547;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 5px 5px 10px rgba(0,0,0,0.1);
+        }
+
+        fieldset {
+            border: 1px solid #888;
+            border-radius: 5px;
+            padding: 15px;
+        }
+
+        legend {
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .input-group {
+            margin-bottom: 10px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 90%;
+            padding: 5px;
+            border: 1px solid #dcdcdc;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 5px 15px;
+            cursor: pointer;
+        }
+
+        .result {
+            margin-top: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Strona do obliczania pól i obwodów figur geometrycznych</h1>
+
+    <div class="container">
+        <div class="card">
+            <fieldset>
+                <legend>Prostokąt</legend>
+                <div class="input-group">
+                    <label>Długość boku a =</label>
+                    <input type="number" id="rect-a">
+                </div>
+                <div class="input-group">
+                    <label>Długość boku b =</label>
+                    <input type="number" id="rect-b">
+                </div>
+                <button onclick="calcRect()">Oblicz</button>
+                <div id="res-rect" class="result"></div>
+            </fieldset>
+        </div>
+
+        <div class="card">
+            <fieldset>
+                <legend>Trójkąt</legend>
+                <div class="input-group">
+                    <label>Długość podstawy a =</label>
+                    <input type="number" id="tri-a">
+                </div>
+                <div class="input-group">
+                    <label>Wysokość h =</label>
+                    <input type="number" id="tri-h">
+                </div>
+                <button onclick="calcTri()">Oblicz</button>
+                <div id="res-tri" class="result"></div>
+            </fieldset>
+        </div>
+
+        <div class="card">
+            <fieldset>
+                <legend>Trapez</legend>
+                <div class="input-group">
+                    <label>Długość boku a =</label>
+                    <input type="number" id="trap-a">
+                </div>
+                <div class="input-group">
+                    <label>Długość boku b =</label>
+                    <input type="number" id="trap-b">
+                </div>
+                <div class="input-group">
+                    <label>Wysokość h =</label>
+                    <input type="number" id="trap-h">
+                </div>
+                <button onclick="calcTrap()">Oblicz</button>
+                <div id="res-trap" class="result"></div>
+            </fieldset>
+        </div>
+
+        <div class="card">
+            <fieldset>
+                <legend>Okrąg</legend>
+                <div class="input-group">
+                    <label>Promień r =</label>
+                    <input type="number" id="circ-r">
+                </div>
+                <button onclick="calcCirc()">Oblicz</button>
+                <div id="res-circ" class="result"></div>
+            </fieldset>
+        </div>
+    </div>
+
+    <script>
+        function calcRect() {
+            const a = document.getElementById('rect-a').value;
+            const b = document.getElementById('rect-b').value;
+            const area = a * b;
+            document.getElementById('res-rect').innerText = "Pole: " + area;
+        }
+
+        function calcTri() {
+            const a = document.getElementById('tri-a').value;
+            const h = document.getElementById('tri-h').value;
+            const area = 0.5 * a * h;
+            document.getElementById('res-tri').innerText = "Pole: " + area;
+        }
+
+        function calcTrap() {
+            const a = parseFloat(document.getElementById('trap-a').value);
+            const b = parseFloat(document.getElementById('trap-b').value);
+            const h = parseFloat(document.getElementById('trap-h').value);
+            const area = ((a + b) * h) / 2;
+            document.getElementById('res-trap').innerText = "Pole: " + area;
+        }
+
+        function calcCirc() {
+            const r = document.getElementById('circ-r').value;
+            const area = (Math.PI * Math.pow(r, 2)).toFixed(2);
+            document.getElementById('res-circ').innerText = "Pole: " + area;
+        }
+    </script>
+
+</body>
+</html>

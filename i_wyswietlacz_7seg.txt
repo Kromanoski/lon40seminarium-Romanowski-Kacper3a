@@ -1,0 +1,1 @@
+moduł złożony z siedmiu segmentów LED umożliwiający wyświetlanie cyfr od 0 do 9 oraz wybranych znaków.

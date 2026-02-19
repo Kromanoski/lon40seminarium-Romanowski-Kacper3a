@@ -1,0 +1,1 @@
+hermetyczny przełącznik reagujący na pole magnetyczne, zamykający lub otwierający obwód w jego obecności.

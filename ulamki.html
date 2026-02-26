@@ -7,6 +7,7 @@
     <style>
         body{
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 24px;
             background-color: aliceblue;
             display: flex;
             flex-direction: column;
@@ -109,6 +110,29 @@
         </div>
     </div>
 
+    <div class="box">
+    <h2>Odejmowanie</h2>
+
+        <div class="fraction">
+            <input type="number" id="o_num1"><div class="line"></div>
+            <input type="number" id="o_den1">
+        </div>
+
+        -
+
+        <div class="fraction">
+            <input type="number" id="o_num2"><div class="line"></div>
+            <input type="number" id="o_den2">
+        </div>
+
+        <br>
+        <button onclick="odejmij()">Odejmij</button>
+
+        <div class="fraction">
+            <input type="text" id="o_res_num" readonly><div class="line"></div>
+            <input type="text" id="o_res_den" readonly>
+        </div>
+    </div>
 <script>
 
 function nwd(a, b) {
@@ -162,6 +186,32 @@ function nwd(a, b) {
 
     document.getElementById("a_res_num").value = num;
     document.getElementById("a_res_den").value = den;
+}
+function odejmij() {
+    let n1 = parseInt(document.getElementById("o_num1").value);
+    let d1 = parseInt(document.getElementById("o_den1").value);
+    let n2 = parseInt(document.getElementById("o_num2").value);
+    let d2 = parseInt(document.getElementById("o_den2").value);
+
+    if (d1 === 0 || d2 === 0) {
+        alert("Mianownik nie może być zerem!");
+        return;
+    }
+
+    let num = n1 * d2 - n2 * d1; 
+    let den = d1 * d2;
+
+    let d = nwd(num, den);
+    num /= d;
+    den /= d;
+
+    if (den < 0) {
+        num *= -1;
+        den *= -1;
+    }
+
+    document.getElementById("o_res_num").value = num;
+    document.getElementById("o_res_den").value = den;
 }
 </script>
 </body>

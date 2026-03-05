@@ -18,8 +18,6 @@
         </select>
     </div>
 
-    <div class="color-selectors" id="selectors"></div>
-
     <button onclick="calculate()">Oblicz</button>
 
     <div class="result" id="result"></div>
@@ -76,54 +74,106 @@ const data = {
   }
 };
 
-document.getElementById("bandCount").addEventListener("change", generateSelectors);
+let selectedColors = [];
 
-generateSelectors();
+document.getElementById("bandCount").addEventListener("change", generateBands);
 
-function generateSelectors() {
+generateBands();
+
+function generateBands() {
     const count = parseInt(document.getElementById("bandCount").value);
-    const container = document.getElementById("selectors");
     const resistor = document.getElementById("resistor");
-
-    container.innerHTML = "";
     resistor.innerHTML = "";
+    selectedColors = new Array(count).fill(null);
 
     for (let i = 0; i < count; i++) {
-        let select = document.createElement("select");
-
-        if (count === 4) {
-            if (i < 2) select.innerHTML = getOptions(data.digits);
-            else if (i === 2) select.innerHTML = getOptions(data.multipliers);
-            else select.innerHTML = getOptions(data.tolerances);
-        }
-
-        if (count === 5) {
-            if (i < 3) select.innerHTML = getOptions(data.digits);
-            else if (i === 3) select.innerHTML = getOptions(data.multipliers);
-            else select.innerHTML = getOptions(data.tolerances);
-        }
-
-        select.onchange = updateBands;
-        container.appendChild(select);
-
         let band = document.createElement("div");
         band.className = "band";
+        band.dataset.index = i;
+        band.onclick = openPalette;
         resistor.appendChild(band);
     }
-
-    updateBands();
 }
 
-function getOptions(obj) {
-    return Object.keys(obj)
-        .map(color => `<option value="${color}">${color}</option>`)
-        .join("");
+function openPalette(e) {
+    const index = e.target.dataset.index;
+
+    const palette = document.createElement("div");
+    palette.className = "palette";
+
+    let allowedColors = getAllowedColors(index);
+
+    allowedColors.forEach(color => {
+        let swatch = document.createElement("div");
+        swatch.className = "color-swatch";
+        swatch.style.backgroundColor = convertColor(color);
+        swatch.onclick = () => {
+            selectedColors[index] = color;
+            e.target.style.backgroundColor = convertColor(color);
+            document.body.removeChild(palette);
+            calculate();
+        };
+        palette.appendChild(swatch);
+    });
+
+    palette.style.top = e.pageY + "px";
+    palette.style.left = e.pageX + "px";
+
+    document.body.appendChild(palette);
 }
 
-function updateBands() {
-    const selects = document.querySelectorAll("#selectors select");
-    const bands = document.querySelectorAll(".band");
+function getAllowedColors(index) {
+    const count = selectedColors.length;
 
+    if (count === 4) {
+        if (index < 2) return Object.keys(data.digits);
+        if (index === 2) return Object.keys(data.multipliers);
+        return Object.keys(data.tolerances);
+    }
+
+    if (count === 5) {
+        if (index < 3) return Object.keys(data.digits);
+        if (index === 3) return Object.keys(data.multipliers);
+        return Object.keys(data.tolerances);
+    }
+}
+
+function calculate() {
+    if (selectedColors.includes(null)) return;
+
+    let value = 0;
+    let tolerance = "";
+
+    if (selectedColors.length === 4) {
+        value = (
+            data.digits[selectedColors[0]] * 10 +
+            data.digits[selectedColors[1]]
+        ) * data.multipliers[selectedColors[2]];
+
+        tolerance = data.tolerances[selectedColors[3]];
+    }
+
+    if (selectedColors.length === 5) {
+        value = (
+            data.digits[selectedColors[0]] * 100 +
+            data.digits[selectedColors[1]] * 10 +
+            data.digits[selectedColors[2]]
+        ) * data.multipliers[selectedColors[3]];
+
+        tolerance = data.tolerances[selectedColors[4]];
+    }
+
+    document.getElementById("result").innerHTML =
+        "Rezystancja: " + formatValue(value) + " Ω " + tolerance;
+}
+
+function formatValue(val) {
+    if (val >= 1000000) return (val/1000000) + " M";
+    if (val >= 1000) return (val/1000) + " k";
+    return val;
+}
+
+function convertColor(color) {
     const map = {
         "czarny": "black",
         "brązowy": "brown",
@@ -138,46 +188,7 @@ function updateBands() {
         "złoty": "gold",
         "srebrny": "silver"
     };
-
-    selects.forEach((select, index) => {
-        bands[index].style.backgroundColor = map[select.value];
-    });
-}
-
-function calculate() {
-    const selects = document.querySelectorAll("#selectors select");
-    const count = selects.length;
-
-    let value = 0;
-    let tolerance = "";
-
-    if (count === 4) {
-        value = (
-            data.digits[selects[0].value] * 10 +
-            data.digits[selects[1].value]
-        ) * data.multipliers[selects[2].value];
-
-        tolerance = data.tolerances[selects[3].value];
-    }
-
-    if (count === 5) {
-        value = (
-            data.digits[selects[0].value] * 100 +
-            data.digits[selects[1].value] * 10 +
-            data.digits[selects[2].value]
-        ) * data.multipliers[selects[3].value];
-
-        tolerance = data.tolerances[selects[4].value];
-    }
-
-    document.getElementById("result").innerHTML =
-        "Rezystancja: " + formatValue(value) + " Ω " + tolerance;
-}
-
-function formatValue(val) {
-    if (val >= 1000000) return (val/1000000) + " M";
-    if (val >= 1000) return (val/1000) + " k";
-    return val;
+    return map[color];
 }
 </script>
 

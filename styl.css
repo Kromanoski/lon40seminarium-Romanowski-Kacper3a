@@ -1,0 +1,163 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #1f1f1f, #2c3e50);
+    color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    background: #2b2b2b;
+    padding: 40px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 800px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 28px;
+    letter-spacing: 1px;
+}
+
+.select-box {
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+select {
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+    background: #34495e;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+select:hover {
+    background: #3d566e;
+}
+
+.color-selectors {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.color-selectors select {
+    width: 130px;
+}
+
+button {
+    display: block;
+    margin: 0 auto;
+    padding: 12px 30px;
+    background: #e67e22;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #ff9f43;
+    transform: scale(1.05);
+}
+
+.result {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 15px;
+    background: #34495e;
+    border-radius: 10px;
+}
+
+.resistor-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.wire {
+    width: 100px;
+    height: 6px;
+    background: linear-gradient(to bottom, #ddd, #999, #ddd);
+    border-radius: 3px;
+}
+
+.resistor {
+    width: 340px;
+    height: 70px;
+    border-radius: 40px;
+    position: relative;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+    background: radial-gradient(circle at 50% 30%, #f5deb3 0%, #d2b48c 40%, #a67c52 100%);
+    
+    box-shadow:
+        inset 0 8px 15px rgba(255,255,255,0.4),
+        inset 0 -8px 15px rgba(0,0,0,0.4),
+        0 10px 20px rgba(0,0,0,0.5);
+}
+
+.resistor::after {
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: 40px;
+    right: 40px;
+    height: 15px;
+    border-radius: 20px;
+    background: linear-gradient(to right, rgba(255,255,255,0.6), rgba(255,255,255,0.1));
+}
+
+.band {
+    width: 22px;
+    height: 100%;
+    border-radius: 5px;
+    box-shadow:
+        inset 0 3px 5px rgba(255,255,255,0.5),
+        inset 0 -3px 5px rgba(0,0,0,0.6);
+}
+.table-section {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.table-section h2 {
+    margin-bottom: 20px;
+    font-size: 22px;
+}
+
+.table-image {
+    max-width: 100%;
+    width: 600px;
+    border-radius: 15px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.7);
+    transition: 0.3s;
+}
+
+.table-image:hover {
+    transform: scale(1.02);
+}

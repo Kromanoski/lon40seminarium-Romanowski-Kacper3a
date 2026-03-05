@@ -1,0 +1,34 @@
+{
+  "digits": {
+    "czarny": 0,
+    "brązowy": 1,
+    "czerwony": 2,
+    "pomarańczowy": 3,
+    "żółty": 4,
+    "zielony": 5,
+    "niebieski": 6,
+    "fioletowy": 7,
+    "szary": 8,
+    "biały": 9
+  },
+  "multipliers": {
+    "czarny": 1,
+    "brązowy": 10,
+    "czerwony": 100,
+    "pomarańczowy": 1000,
+    "żółty": 10000,
+    "zielony": 100000,
+    "niebieski": 1000000,
+    "złoty": 0.1,
+    "srebrny": 0.01
+  },
+  "tolerances": {
+    "brązowy": "±1%",
+    "czerwony": "±2%",
+    "zielony": "±0.5%",
+    "niebieski": "±0.25%",
+    "fioletowy": "±0.1%",
+    "złoty": "±5%",
+    "srebrny": "±10%"
+  }
+}

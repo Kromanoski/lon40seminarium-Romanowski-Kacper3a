@@ -1,0 +1,1 @@
+czujnik obrotu generujący impulsy elektryczne proporcjonalne do kąta i kierunku obrotu wału.

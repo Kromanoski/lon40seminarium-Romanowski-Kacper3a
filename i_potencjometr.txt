@@ -1,1 +1,0 @@
-regulowany rezystor pozwalający na płynną zmianę oporu, często używany do regulacji napięcia lub głośności.

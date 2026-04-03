@@ -1,0 +1,9 @@
+.column{
+    background-color: lightblue;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
+    height: 500px;
+    width: 1000px;
+    box-shadow: 10px 10px 5px darkblue;
+}
+

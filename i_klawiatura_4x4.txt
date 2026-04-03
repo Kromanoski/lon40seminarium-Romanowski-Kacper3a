@@ -1,1 +1,0 @@
-matrycowa klawiatura z 16 przyciskami ułożonymi w 4 wierszach i 4 kolumnach, służąca do wprowadzania danych.

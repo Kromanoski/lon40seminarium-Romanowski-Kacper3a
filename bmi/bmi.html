@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator BMI</title>
+    <link rel="stylesheet" href="styll.css">
+</head>
+<body>
+    <h1>Wskaźnik masy ciała BMI</h1>
+</body>
+<div class="kontener">
+    <img src="bmi.png" class="obrazek-bmi" alt="skala">
+    <img src="strzalka.png" class="strzalka" alt="strzalkabmi" id="strzala">
+</div>
+
+<div class="pole">
+    <label>Waga (kg):</label>
+    <input type="number" id="waga">
+
+    <label>Wzrost (cm):</label>
+    <input type="number" id="wzrost">
+
+    <button onclick="obliczBMI()">Oblicz</button>
+
+    <p id="wynik" class="wynk"></p>
+</div>
+
+<div class="obraz">
+    <img id="obrazBMI" src="normal.png" class="obraz">
+</div>
+
+<script src="funktion.js"></script>

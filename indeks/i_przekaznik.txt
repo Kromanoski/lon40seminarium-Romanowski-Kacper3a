@@ -1,0 +1,1 @@
+element elektromechaniczny umożliwiający sterowanie obwodem o wyższym napięciu lub prądzie za pomocą sygnału sterującego o mniejszej mocy.
